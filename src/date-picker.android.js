@@ -75,12 +75,13 @@ export default class DatePicker extends PureComponent {
     const maxYear = this.props.maximumDate.getFullYear();
 
     for (let i = 1; i <= 12; i += 1) {
-      this.state.monthRange.push({ value: i, label: `${i}${this.props.labelUnit.month}` });
+      let monthStr = moment().month(i - 1).format("MMMM")
+      this.state.monthRange.push({ value: i, label: `${monthStr}${this.props.labelUnit.month}` });
     }
 
     this.state.yearRange.push({ value: minYear, label: `${minYear}${this.props.labelUnit.year}` });
 
-    for (let i = minYear + 1; i <= maxYear + 1; i += 1) {
+    for (let i = minYear + 1; i <= maxYear; i += 1) {
       this.state.yearRange.push({ value: i, label: `${i}${this.props.labelUnit.year}` });
     }
   }
